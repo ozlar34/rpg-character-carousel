@@ -1,8 +1,8 @@
 # RPG Character Carousel
 
-A 10-slide LinkedIn document carousel that presents me as a classic 2D-RPG **character sheet** — a hero stats page, then one "item card" per hobby and tool, each graded by rarity like loot in an MMORPG.
+A LinkedIn document carousel that presents me as a classic 2D-RPG **character sheet** — a hero stats page, then one "item card" per hobby and tool, each graded by rarity like loot in an MMORPG. This build ships **8 slides**, but the system scales to as many cards as you want: the hero locks the visual contract, and every extra item just reuses it.
 
-It's a personal-branding piece, but the interesting part is underneath: it's a **prompt-engineering project**. The whole repo is a worked example of bending two generative-image models to a single, locked art direction and keeping them from drifting across ten separate renders.
+It's a personal-branding piece, but the interesting part is underneath: it's a **prompt-engineering project**. The whole repo is a worked example of bending two generative-image models to a single, locked art direction and keeping them from drifting across an arbitrary number of separate renders.
 
 <p align="center">
   <img src="slides/slide-01-hero.png" alt="Hero slide — character stats page" width="420">
@@ -39,7 +39,7 @@ Each pixel-art item is generated in Google AI Studio with **Gemini 3 Pro Image (
 
 ### Stage 2 — Slide composition (Claude Design)
 
-Each item card is then composed into a finished, framed slide in **Claude Design** (`claude.ai/design`). `CLAUDE-DESIGN-PROMPTS.md` holds just two prompts: one long setup message that establishes the visual system and renders the hero, and a tiny per-slide template reused for the other nine. Claude Design retains design context within a project, so the system is defined once and never restated. Finished slides land in `slides/`, then export to a PDF and post as a LinkedIn document.
+Each item card is then composed into a finished, framed slide in **Claude Design** (`claude.ai/design`). `CLAUDE-DESIGN-PROMPTS.md` holds just two prompts: one long setup message that establishes the visual system and renders the hero, and a tiny per-slide template reused for every item card after it — run it as many times as you have items. Claude Design retains design context within a project, so the system is defined once and never restated. Finished slides land in `slides/`, then export to a PDF and post as a LinkedIn document.
 
 ### The actual engineering: drift control
 
@@ -48,7 +48,7 @@ Generative image models love to wander. The bulk of this repo is the machinery t
 - **A locked aesthetic lane** — era, rendering language, palette, typography, and stat-bar style are all pinned, with reference images labelled as locks rather than suggestions.
 - **Hard exclusions** — earlier rounds returned an illuminated-manuscript look, a neon arcade look, and a modern card-UI look. Each failure mode is written back into the prompt as an explicit "do not return this" so it can't recur.
 - **A single source of truth for copy** — every word that appears on every slide lives in `CONTENT.md`, proofread once, because fixing a typo inside an image generator means re-rendering and burning quota.
-- **Quota-aware sequencing** — get the hero exactly right first, since the locked hero becomes the visual contract for the remaining nine slides.
+- **Quota-aware sequencing** — get the hero exactly right first, since the locked hero becomes the visual contract every later card inherits.
 
 That's the transferable skill here: treating a creative generation task like a spec problem — constraints, anti-examples, a single source of truth, and a cheap-to-iterate path.
 
