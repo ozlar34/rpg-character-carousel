@@ -1,0 +1,11 @@
+.DS_Store
+
+# Raw source selfie used to generate the pixel avatar — not needed publicly
+assets/portrait Medium.jpeg
+
+# Third-party reference art (game screenshots + prior exemplar) — not redistributed.
+# See reference/README.md for the inspiration sources.
+reference/*.jpeg
+reference/*.jpg
+reference/*.png
+!reference/README.md
