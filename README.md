@@ -33,6 +33,32 @@ Each item is a real interest rendered as RPG loot: a DJ controller (`LEGENDARY �
 
 The carousel is the output of a **two-stage generative pipeline**. Each stage uses a different model for what it's best at, and the hard work is in the prompts, not the pixels.
 
+![Two-stage generative pipeline: CONTENT.md is the single source of truth for copy; Stage 1 generates pixel-art items in Gemini 3 Pro Image; Stage 2 composes finished slides in Claude Design; the result exports to a LinkedIn PDF carousel — with drift control as the connecting engineering.](docs/architecture.png)
+
+<details>
+<summary>Text version</summary>
+
+```
+CONTENT.md  ── single source of truth for copy (every word, proofread once)
+     │           drift control: locked aesthetic lane · hard exclusions
+     │           · reference images as locks
+     ▼
+Stage 1 · Item Art
+  Gemini 3 Pro Image (Nano Banana Pro) · Google AI Studio
+  → pixel-art items → assets/
+     │
+     ▼
+Stage 2 · Slide Composition
+  Claude Design · hero locks the visual contract
+  · per-item template reused → slides/
+     │
+     ▼
+LinkedIn Document
+  export to PDF · post as a carousel
+```
+
+</details>
+
 ### Stage 1 — Item art (Google Gemini)
 
 Each pixel-art item is generated in Google AI Studio with **Gemini 3 Pro Image (Nano Banana Pro)**. The prompts (`GEMINI-PROMPTS.md`, `SLIDE-PROMPTS.md`) lock a narrow aesthetic lane and feed two reference screenshots as "aesthetic locks" so every item belongs to the same world. Output lands in `assets/`.
