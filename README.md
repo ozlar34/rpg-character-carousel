@@ -1,3 +1,5 @@
+![rpg-character-carousel — a personal brand built as an RPG character sheet](docs/banner.png)
+
 # RPG Character Carousel
 
 A LinkedIn document carousel that presents me as a classic 2D-RPG **character sheet** — a hero stats page, then one "item card" per hobby and tool, each graded by rarity like loot in an MMORPG. This build ships **8 slides**, but the system scales to as many cards as you want: the hero locks the visual contract, and every extra item just reuses it.
