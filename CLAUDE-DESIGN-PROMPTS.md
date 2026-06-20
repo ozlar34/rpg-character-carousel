@@ -1,3 +1,5 @@
+> **Note:** This file documents the initial Claude Design approach to slide composition; it has been superseded by `GEMINI-PROMPTS.md`.
+
 # Claude Design — Prompts for the Character Sheet Carousel
 
 Two prompts only. The first one establishes the visual system + produces the hero slide. The second is a tiny template you reuse for slides 2–10. Claude Design retains design context within a single project, so don't restate the system on every message — that wastes weekly quota.

@@ -25,6 +25,11 @@ It's a personal-branding piece, but the interesting part is underneath: it's a *
     <td><img src="slides/slide-06-printer.png" alt="3D Printer — Rare" width="240"></td>
     <td><img src="slides/slide-07-controller.png" alt="Controller — Epic" width="240"></td>
   </tr>
+  <tr>
+    <td><img src="slides/slide-08-watch.png" alt="Watch — Epic" width="240"></td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>
 
 Each item is a real interest rendered as RPG loot: a DJ controller (`LEGENDARY · WEAPON`), a V60 coffee dripper (`UNCOMMON · ARTEFACT`), a Commander deck (`EPIC · TOME`), a 3D printer (`RARE · CRAFTING STATION`), and so on. Stats, passives, and flavor text carry the actual content.
@@ -75,7 +80,7 @@ Generative image models love to wander. The bulk of this repo is the machinery t
 
 - **A locked aesthetic lane** — era, rendering language, palette, typography, and stat-bar style are all pinned, with reference images labelled as locks rather than suggestions.
 - **Hard exclusions** — earlier rounds returned an illuminated-manuscript look, a neon arcade look, and a modern card-UI look. Each failure mode is written back into the prompt as an explicit "do not return this" so it can't recur.
-- **A single source of truth for copy** — every word that appears on every slide lives in `CONTENT.md`, proofread once, because fixing a typo inside an image generator means re-rendering and burning quota.
+- **A single source of truth for copy** — every word that appears on every slide lives in `CONTENT.md`, proofread once, because fixing a typo inside an image generator means re-rendering and burning quota. (`CONTENT.md` documents the full 10-card system; this build ships 8.)
 - **Quota-aware sequencing** — get the hero exactly right first, since the locked hero becomes the visual contract every later card inherits.
 
 That's the transferable skill here: treating a creative generation task like a spec problem — constraints, anti-examples, a single source of truth, and a cheap-to-iterate path.
@@ -88,7 +93,7 @@ That's the transferable skill here: treating a creative generation task like a s
 rpg-character-carousel/
 ├── CONTENT.md                 # Single source of truth — every word on every slide
 ├── GEMINI-PROMPTS.md          # Stage 1: item-art generation prompts (Gemini)
-├── SLIDE-PROMPTS.md           # Stage 1: per-slide art prompts
+├── SLIDE-PROMPTS.md           # Stage 2: per-slide composition prompts (adding text to template)
 ├── CLAUDE-DESIGN-PROMPTS.md   # Stage 2: slide composition prompts (Claude Design)
 ├── assets/                    # Generated pixel-art items + the hero avatar
 ├── slides/                    # Finished, composed carousel slides
